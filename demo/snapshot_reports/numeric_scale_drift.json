@@ -1,0 +1,8 @@
+{
+  "alerts": [],
+  "metrics": {
+    "unseen_category_rate": 0.0,
+    "categorical_sparsity_rate": 0.0,
+    "norm_anomaly_rate": 0.0
+  }
+}

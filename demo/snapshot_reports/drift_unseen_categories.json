@@ -1,0 +1,10 @@
+{
+  "alerts": [
+    "\u26a0 Unseen category rate 100.00% exceeds threshold 10.00%."
+  ],
+  "metrics": {
+    "unseen_category_rate": 1.0,
+    "categorical_sparsity_rate": 0.0,
+    "norm_anomaly_rate": 0.0
+  }
+}

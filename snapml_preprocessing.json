@@ -1,0 +1,110 @@
+{
+    "data_schema": {
+        "num_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+        ],
+        "cat_indices": [
+            10,
+            11,
+            12,
+            13,
+            14
+        ]
+    },
+    "transformers": {
+        "transformer1": [
+            {
+                "type": "Normalizer",
+                "params": {
+                    "copy": true,
+                    "norm": "l2"
+                },
+                "data": {},
+                "columns": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9
+                ]
+            }
+        ],
+        "transformer2": [
+            {
+                "type": "OneHotEncoder",
+                "params": {
+                    "categories": "auto",
+                    "drop": null,
+                    "dtype": "float64",
+                    "handle_unknown": "ignore",
+                    "max_categories": null,
+                    "min_frequency": null,
+                    "sparse": false
+                },
+                "data": {
+                    "categories": [
+                        [
+                            "AA",
+                            "AB",
+                            "AC",
+                            "AD",
+                            "AE"
+                        ],
+                        [
+                            "CA",
+                            "CB",
+                            "CC",
+                            "CD",
+                            "CE",
+                            "CF",
+                            "CG"
+                        ],
+                        [
+                            "BA",
+                            "BB",
+                            "BC",
+                            "BD",
+                            "BE",
+                            "BF",
+                            "BG"
+                        ],
+                        [
+                            "linux",
+                            "macintosh",
+                            "other",
+                            "windows",
+                            "x11"
+                        ],
+                        [
+                            "INTERNET",
+                            "TELEAPP"
+                        ]
+                    ]
+                },
+                "columns": [
+                    10,
+                    11,
+                    12,
+                    13,
+                    14
+                ]
+            }
+        ],
+        "transformer3": []
+    },
+    "remainder": "passthrough"
+}

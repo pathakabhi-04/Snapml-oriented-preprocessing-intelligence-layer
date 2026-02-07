@@ -1,0 +1,5 @@
+{
+  "status": "contract_violation",
+  "error_type": "ValueError",
+  "error_message": "Inference data column order does not match SnapML preprocessing contract. Numeric indices refer to non-numeric values."
+}
