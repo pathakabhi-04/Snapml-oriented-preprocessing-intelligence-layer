@@ -1,0 +1,12 @@
+# Python
+__pycache__/
+*.pyc
+
+# Conda / installers
+Miniconda*.sh
+
+# Data
+data/*.csv
+
+# Artifacts
+*.joblib
