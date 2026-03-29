@@ -26,14 +26,17 @@ batch.loc[:, "payment_type"] = "ZZ_UNKNOWN"
 
 batch = align_to_snapml_order(batch, feature_order)
 
-report = detect_preprocessing_drift(contract, batch)
+report = detect_preprocessing_drift(
+    contract,
+    batch,
+    feature_order
+)
 
 print("=== UNSEEN CATEGORY DRIFT ===")
-print(report)
-
+print(json.dumps(report, indent=2))  # ✅ improved
 
 # -----------------------------
-# Snapshot persistence (NEW)
+# Snapshot persistence
 # -----------------------------
 Path("demo/snapshot_reports").mkdir(parents=True, exist_ok=True)
 

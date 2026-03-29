@@ -10,3 +10,6 @@ data/*.csv
 
 # Artifacts
 *.joblib
+
+__pycache__/
+*.pyc

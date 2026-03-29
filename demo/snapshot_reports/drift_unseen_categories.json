@@ -1,10 +1,275 @@
 {
   "alerts": [
-    "\u26a0 Unseen category rate 100.00% exceeds threshold 10.00%."
+    {
+      "type": "unseen_category",
+      "feature": "payment_type",
+      "severity": {
+        "level": "high",
+        "score": 1.0
+      },
+      "metrics": {
+        "unseen_rate": 1.0,
+        "threshold": 0.1
+      },
+      "explanation": "Feature 'payment_type' contains unseen values. These will be encoded as zero-vectors, reducing signal.",
+      "recommended_action": "retrain_pipeline"
+    },
+    {
+      "type": "numeric_distribution_drift",
+      "feature": "customer_age",
+      "severity": {
+        "level": "high",
+        "score": 1.0
+      },
+      "metrics": {
+        "mean_shift": 33.1,
+        "std_shift": 10.784215522084695
+      },
+      "explanation": "Feature 'customer_age' distribution shifted (mean/variance).",
+      "recommended_action": "inspect_numeric_distribution"
+    },
+    {
+      "type": "numeric_distribution_drift",
+      "feature": "income",
+      "severity": {
+        "level": "high",
+        "score": 1.0
+      },
+      "metrics": {
+        "mean_shift": 0.5660000000000001,
+        "std_shift": 0.7159482956546767
+      },
+      "explanation": "Feature 'income' distribution shifted (mean/variance).",
+      "recommended_action": "inspect_numeric_distribution"
+    },
+    {
+      "type": "numeric_distribution_drift",
+      "feature": "days_since_request",
+      "severity": {
+        "level": "high",
+        "score": 1.0
+      },
+      "metrics": {
+        "mean_shift": 0.8631181543314704,
+        "std_shift": 4.231341681548055
+      },
+      "explanation": "Feature 'days_since_request' distribution shifted (mean/variance).",
+      "recommended_action": "inspect_numeric_distribution"
+    },
+    {
+      "type": "numeric_distribution_drift",
+      "feature": "zip_count_4w",
+      "severity": {
+        "level": "high",
+        "score": 1.0
+      },
+      "metrics": {
+        "mean_shift": 1613.746,
+        "std_shift": 1095.5953603095834
+      },
+      "explanation": "Feature 'zip_count_4w' distribution shifted (mean/variance).",
+      "recommended_action": "inspect_numeric_distribution"
+    },
+    {
+      "type": "numeric_distribution_drift",
+      "feature": "velocity_6h",
+      "severity": {
+        "level": "high",
+        "score": 1.0
+      },
+      "metrics": {
+        "mean_shift": 5667.06807326937,
+        "std_shift": 3100.5786844517315
+      },
+      "explanation": "Feature 'velocity_6h' distribution shifted (mean/variance).",
+      "recommended_action": "inspect_numeric_distribution"
+    },
+    {
+      "type": "numeric_distribution_drift",
+      "feature": "velocity_24h",
+      "severity": {
+        "level": "high",
+        "score": 1.0
+      },
+      "metrics": {
+        "mean_shift": 4906.073575779332,
+        "std_shift": 1539.6533648932993
+      },
+      "explanation": "Feature 'velocity_24h' distribution shifted (mean/variance).",
+      "recommended_action": "inspect_numeric_distribution"
+    },
+    {
+      "type": "numeric_distribution_drift",
+      "feature": "velocity_4w",
+      "severity": {
+        "level": "high",
+        "score": 1.0
+      },
+      "metrics": {
+        "mean_shift": 4832.823143711336,
+        "std_shift": 898.0694052004766
+      },
+      "explanation": "Feature 'velocity_4w' distribution shifted (mean/variance).",
+      "recommended_action": "inspect_numeric_distribution"
+    },
+    {
+      "type": "numeric_distribution_drift",
+      "feature": "device_fraud_count",
+      "severity": {
+        "level": "medium",
+        "score": 0.6
+      },
+      "metrics": {
+        "mean_shift": 0.0,
+        "std_shift": 1.0
+      },
+      "explanation": "Feature 'device_fraud_count' distribution shifted (mean/variance).",
+      "recommended_action": "inspect_numeric_distribution"
+    },
+    {
+      "type": "numeric_distribution_drift",
+      "feature": "proposed_credit_limit",
+      "severity": {
+        "level": "high",
+        "score": 1.0
+      },
+      "metrics": {
+        "mean_shift": 580.78,
+        "std_shift": 515.5947462602843
+      },
+      "explanation": "Feature 'proposed_credit_limit' distribution shifted (mean/variance).",
+      "recommended_action": "inspect_numeric_distribution"
+    },
+    {
+      "type": "numeric_distribution_drift",
+      "feature": "session_length_in_minutes",
+      "severity": {
+        "level": "high",
+        "score": 1.0
+      },
+      "metrics": {
+        "mean_shift": 7.749773137165557,
+        "std_shift": 7.324150438453502
+      },
+      "explanation": "Feature 'session_length_in_minutes' distribution shifted (mean/variance).",
+      "recommended_action": "inspect_numeric_distribution"
+    }
   ],
   "metrics": {
-    "unseen_category_rate": 1.0,
-    "categorical_sparsity_rate": 0.0,
-    "norm_anomaly_rate": 0.0
+    "categorical": {
+      "payment_type": {
+        "unseen_rate": 1.0
+      },
+      "employment_status": {
+        "unseen_rate": 0.0
+      },
+      "housing_status": {
+        "unseen_rate": 0.0
+      },
+      "device_os": {
+        "unseen_rate": 0.0
+      },
+      "source": {
+        "unseen_rate": 0.0
+      },
+      "_global": {
+        "sparsity_rate": 0.0
+      }
+    },
+    "numeric": {
+      "norm_anomaly_rate": 0.0,
+      "distribution": {
+        "customer_age": {
+          "mean": 33.1,
+          "std": 11.784215522084695,
+          "mean_shift": 33.1,
+          "std_shift": 10.784215522084695
+        },
+        "income": {
+          "mean": 0.5660000000000001,
+          "std": 0.28405170434532334,
+          "mean_shift": 0.5660000000000001,
+          "std_shift": 0.7159482956546767
+        },
+        "days_since_request": {
+          "mean": 0.8631181543314704,
+          "std": 5.231341681548055,
+          "mean_shift": 0.8631181543314704,
+          "std_shift": 4.231341681548055
+        },
+        "zip_count_4w": {
+          "mean": 1613.746,
+          "std": 1096.5953603095834,
+          "mean_shift": 1613.746,
+          "std_shift": 1095.5953603095834
+        },
+        "velocity_6h": {
+          "mean": 5667.06807326937,
+          "std": 3101.5786844517315,
+          "mean_shift": 5667.06807326937,
+          "std_shift": 3100.5786844517315
+        },
+        "velocity_24h": {
+          "mean": 4906.073575779332,
+          "std": 1540.6533648932993,
+          "mean_shift": 4906.073575779332,
+          "std_shift": 1539.6533648932993
+        },
+        "velocity_4w": {
+          "mean": 4832.823143711336,
+          "std": 899.0694052004766,
+          "mean_shift": 4832.823143711336,
+          "std_shift": 898.0694052004766
+        },
+        "device_fraud_count": {
+          "mean": 0.0,
+          "std": 0.0,
+          "mean_shift": 0.0,
+          "std_shift": 1.0
+        },
+        "proposed_credit_limit": {
+          "mean": 580.78,
+          "std": 516.5947462602843,
+          "mean_shift": 580.78,
+          "std_shift": 515.5947462602843
+        },
+        "session_length_in_minutes": {
+          "mean": 7.749773137165557,
+          "std": 8.324150438453502,
+          "mean_shift": 7.749773137165557,
+          "std_shift": 7.324150438453502
+        }
+      }
+    }
+  },
+  "summary": {
+    "num_alerts": 11,
+    "drifted_features": [
+      "session_length_in_minutes",
+      "customer_age",
+      "proposed_credit_limit",
+      "velocity_24h",
+      "days_since_request",
+      "device_fraud_count",
+      "income",
+      "zip_count_4w",
+      "payment_type",
+      "velocity_6h",
+      "velocity_4w"
+    ],
+    "top_drifted_features": [
+      {
+        "feature": "velocity_6h",
+        "drift_score": 5667.06807326937
+      },
+      {
+        "feature": "velocity_24h",
+        "drift_score": 4906.073575779332
+      },
+      {
+        "feature": "velocity_4w",
+        "drift_score": 4832.823143711336
+      }
+    ]
   }
 }

@@ -1,0 +1,22 @@
+{
+  "alerts": [
+    {
+      "type": "unseen_category",
+      "feature": "payment_type",
+      "severity": "high",
+      "rate": 1.0,
+      "threshold": 0.1,
+      "recommended_action": "retrain_pipeline"
+    }
+  ],
+  "metrics": {
+    "payment_type": {
+      "unseen_rate": 1.0,
+      "sparsity": 1.0
+    },
+    "device_os": {
+      "unseen_rate": 0.0,
+      "sparsity": 0.5
+    }
+  }
+}

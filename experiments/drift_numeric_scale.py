@@ -7,22 +7,26 @@ from snapml_observability.input_alignment import align_to_snapml_order
 from snapml_observability.drift_detection import detect_preprocessing_drift
 
 # -----------------------------
-# Paths (read-only inputs)
+# Paths
 # -----------------------------
 CONTRACT_PATH = "snapml_preprocessing.json"
 FEATURE_ORDER_PATH = "snapml_training/feature_order.json"
+BASELINE_PATH = "snapml_training/numeric_baseline.json"
 DATA_PATH = "data/Base.csv"
 
 # -----------------------------
-# Load SnapML contract
+# Load contract
 # -----------------------------
 contract = parse_snapml_contract(CONTRACT_PATH)
 
 with open(FEATURE_ORDER_PATH) as f:
     feature_order = json.load(f)
 
+with open(BASELINE_PATH) as f:
+    numeric_baseline = json.load(f)
+
 # -----------------------------
-# Load inference batch
+# Load batch
 # -----------------------------
 batch = (
     pd.read_csv(DATA_PATH)
@@ -31,31 +35,35 @@ batch = (
 )
 
 # -----------------------------
-# Inject numeric scale drift
+# Inject numeric drift (TARGETED ✅)
 # -----------------------------
-for col in batch.select_dtypes(include=["int64", "float64"]).columns:
-    batch[col] = batch[col] * 1000
+batch.loc[:, "income"] = batch["income"] * 10
 
 # -----------------------------
-# SnapML-aware alignment
+# Align
 # -----------------------------
 batch = align_to_snapml_order(batch, feature_order)
 
 # -----------------------------
-# Drift detection
+# Detect drift (FIXED ✅)
 # -----------------------------
-report = detect_preprocessing_drift(contract, batch)
+report = detect_preprocessing_drift(
+    contract,
+    batch,
+    feature_order,
+    numeric_baseline
+)
 
 # -----------------------------
 # Output
 # -----------------------------
-print("=== NUMERIC SCALE DRIFT ===")
-print(report)
+print("=== NUMERIC DISTRIBUTION DRIFT ===")
+print(json.dumps(report, indent=2))
 
 # -----------------------------
-# Snapshot persistence (NEW)
+# Save snapshot
 # -----------------------------
 Path("demo/snapshot_reports").mkdir(parents=True, exist_ok=True)
 
-with open("demo/snapshot_reports/numeric_scale_drift.json", "w") as f:
+with open("demo/snapshot_reports/numeric_distribution_drift.json", "w") as f:
     json.dump(report, f, indent=2)

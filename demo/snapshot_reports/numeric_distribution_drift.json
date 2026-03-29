@@ -1,0 +1,136 @@
+{
+  "alerts": [
+    {
+      "type": "numeric_distribution_drift",
+      "feature": "income",
+      "severity": {
+        "level": "high",
+        "score": 1.0
+      },
+      "metrics": {
+        "mean_shift": 17.624994592010292,
+        "std_shift": 9.123170532735648
+      },
+      "explanation": "Feature 'income' distribution shifted relative to training baseline.",
+      "recommended_action": "inspect_numeric_distribution"
+    },
+    {
+      "type": "numeric_distribution_drift",
+      "feature": "days_since_request",
+      "severity": {
+        "level": "medium",
+        "score": 0.6
+      },
+      "metrics": {
+        "mean_shift": 0.00725442253474898,
+        "std_shift": 0.12416439619562054
+      },
+      "explanation": "Feature 'days_since_request' distribution shifted relative to training baseline.",
+      "recommended_action": "inspect_numeric_distribution"
+    }
+  ],
+  "metrics": {
+    "categorical": {
+      "payment_type": {
+        "unseen_rate": 0.0
+      },
+      "employment_status": {
+        "unseen_rate": 0.0
+      },
+      "housing_status": {
+        "unseen_rate": 0.0
+      },
+      "device_os": {
+        "unseen_rate": 0.0
+      },
+      "source": {
+        "unseen_rate": 0.0
+      },
+      "_global": {
+        "sparsity_rate": 0.0
+      }
+    },
+    "numeric": {
+      "norm_anomaly_rate": 0.0,
+      "distribution": {
+        "customer_age": {
+          "mean": 33.86,
+          "std": 12.345250520780924,
+          "mean_shift": 0.014212776268893671,
+          "std_shift": 0.026563876948725366
+        },
+        "income": {
+          "mean": 5.68,
+          "std": 2.9391967874763036,
+          "mean_shift": 17.624994592010292,
+          "std_shift": 9.123170532735648
+        },
+        "days_since_request": {
+          "mean": 0.9866631212899007,
+          "std": 4.7136022625997605,
+          "mean_shift": 0.00725442253474898,
+          "std_shift": 0.12416439619562054
+        },
+        "zip_count_4w": {
+          "mean": 1476.6,
+          "std": 969.8100902869824,
+          "mean_shift": 0.09557835681719017,
+          "std_shift": 0.03537435287763633
+        },
+        "velocity_6h": {
+          "mean": 5709.15083424072,
+          "std": 2957.6155073439863,
+          "mean_shift": 0.014572509864274961,
+          "std_shift": 0.017201266215701116
+        },
+        "velocity_24h": {
+          "mean": 4720.105657253487,
+          "std": 1502.9847842688512,
+          "mean_shift": 0.033582939512338206,
+          "std_shift": 0.016070828523205963
+        },
+        "velocity_4w": {
+          "mean": 4803.0046862848885,
+          "std": 945.2732992593678,
+          "mean_shift": 0.05796562600026242,
+          "std_shift": 0.02764530381306722
+        },
+        "device_fraud_count": {
+          "mean": 0.0,
+          "std": 0.0,
+          "mean_shift": 0.0,
+          "std_shift": 0.0
+        },
+        "proposed_credit_limit": {
+          "mean": 540.78,
+          "std": 514.4976260532491,
+          "mean_shift": 0.05113010699615585,
+          "std_shift": 0.055250081150536534
+        },
+        "session_length_in_minutes": {
+          "mean": 7.2197074004283674,
+          "std": 7.725197740971288,
+          "mean_shift": 0.04048654971471593,
+          "std_shift": 0.03832995302506314
+        }
+      }
+    }
+  },
+  "summary": {
+    "num_alerts": 2,
+    "drifted_features": [
+      "days_since_request",
+      "income"
+    ],
+    "top_drifted_features": [
+      {
+        "feature": "income",
+        "drift_score": 17.624994592010292
+      },
+      {
+        "feature": "days_since_request",
+        "drift_score": 0.00725442253474898
+      }
+    ]
+  }
+}
