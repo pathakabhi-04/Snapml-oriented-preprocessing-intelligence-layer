@@ -1,6 +1,7 @@
 from typing import Dict, Any
 import numpy as np
 import pandas as pd
+import time
 
 from snapml_observability.contract_models import SnapMLPreprocessingContract
 
@@ -44,13 +45,14 @@ def detect_preprocessing_drift(
     *,
     unseen_category_threshold: float = 0.10,
     sparsity_threshold: float = 0.05,
-    norm_anomaly_threshold: float = 0.10,
-    numeric_shift_threshold: float = 0.1,
+    norm_anomaly_threshold: float = 0.2,   # 🔥 changed
+    numeric_shift_threshold: float = 0.5,  # 🔥 changed
 ) -> Dict[str, Any]:
 
     report: Dict[str, Any] = {
         "alerts": [],
         "metrics": {},
+        "timestamp": time.time()   # 🔥 ADD THIS
     }
 
     # ------------------------------------------------------------
@@ -223,9 +225,10 @@ def detect_preprocessing_drift(
             "std_shift": std_shift,
         }
 
-        if mean_shift > numeric_shift_threshold or std_shift > numeric_shift_threshold:
+        # Strong drift (either mean OR std very high)
+        if max(mean_shift, std_shift) > 1.5:
 
-            severity = "high" if mean_shift > 2 else "medium"
+            severity = "high"
 
             report["alerts"].append(
                 build_alert(
@@ -236,7 +239,28 @@ def detect_preprocessing_drift(
                         "mean_shift": mean_shift,
                         "std_shift": std_shift,
                     },
-                    f"Feature '{feature_name}' distribution shifted relative to training baseline.",
+                    f"Feature '{feature_name}' distribution shifted significantly.",
+                    "inspect_numeric_distribution",
+                )
+            )
+
+        # Moderate drift (both mean AND std moderately shifted)
+        elif (
+            mean_shift > numeric_shift_threshold
+            or std_shift > numeric_shift_threshold
+        ):
+            severity = "medium"
+
+            report["alerts"].append(
+                build_alert(
+                    "numeric_distribution_drift",
+                    feature_name,
+                    severity,
+                    {
+                        "mean_shift": mean_shift,
+                        "std_shift": std_shift,
+                    },
+                    f"Feature '{feature_name}' distribution moderately shifted.",
                     "inspect_numeric_distribution",
                 )
             )
